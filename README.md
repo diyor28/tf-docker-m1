@@ -25,6 +25,10 @@ First clone the repository.
 git clone https://github.com/diyor28/tf-docker-m1.git
 ```
 
+Make sure to give your docker engine enough RAM since build may fail if the amount of RAM is insufficient.
+Also give your docker engine as many cores as possible in Docker Desktop settings to make building faster.
+On an 8-core (4 efficiency, 4 performance cores) M1 building takes about 5-8 hours.
+
 Then run
 ```shell
 cd tf-docker-m1/
@@ -33,7 +37,7 @@ docker build -t tensorflow-image .
 
 ### Supported versions
 
-Python: v3.9
+Python: v3.9    
 Tensorflow: v2.8
 
 NOTE: Other versions can be built and uploaded upon request.
