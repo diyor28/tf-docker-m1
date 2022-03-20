@@ -11,14 +11,12 @@ Pick a tensorflow and python version from [here](https://github.com/diyor28/tf-d
 and install using:
 ```shell
 pip install https://github.com/diyor28/tf-docker-m1/releases/download/v1.0.0/tensorflow-2.8.0-cp39-cp39-linux_aarch64.whl
-pip install https://github.com/diyor28/tf-docker-m1/releases/download/v1.0.0/tensorflow_addons-0.16.1-cp39-cp39-linux_aarch64.whl
 ```
 
 or in a `Dockerfile` using
 
 ```
 RUN pip install https://github.com/diyor28/tf-docker-m1/releases/download/v1.0.0/tensorflow-2.8.0-cp39-cp39-linux_aarch64.whl
-RUN pip install https://github.com/diyor28/tf-docker-m1/releases/download/v1.0.0/tensorflow_addons-0.16.1-cp39-cp39-linux_aarch64.whl
 ```
 
 You can also build tensorflow from source for your platform using the `Dockerfile` included in the repository.
