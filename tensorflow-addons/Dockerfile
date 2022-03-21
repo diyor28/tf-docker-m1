@@ -1,4 +1,4 @@
-FROM python:3.9.7 as tfa-build
+FROM python:3.8.11 as tfa-build
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential openjdk-11-jdk zip unzip wget
@@ -11,7 +11,7 @@ RUN cp output/bazel /usr/local/bin
 
 WORKDIR /
 RUN apt-get -y install git rsync
-RUN pip install https://github.com/diyor28/tf-docker-m1/releases/download/v1.0.0/tensorflow-2.8.0-cp39-cp39-linux_aarch64.whl
+RUN pip install https://github.com/diyor28/tf-docker-m1/releases/download/v1.0.0/tensorflow-2.8.0-cp38-cp38-linux_aarch64.whl
 
 RUN git clone https://github.com/tensorflow/addons.git
 WORKDIR /addons
@@ -21,8 +21,8 @@ RUN python ./configure.py
 RUN bazel build build_pip_pkg
 RUN bazel-bin/build_pip_pkg artifacts
 
-FROM python:3.9.7 as tfa-install
-RUN pip install https://github.com/diyor28/tf-docker-m1/releases/download/v1.0.0/tensorflow-2.8.0-cp39-cp39-linux_aarch64.whl
+FROM python:3.8.11 as tfa-install
+RUN pip install https://github.com/diyor28/tf-docker-m1/releases/download/v1.0.0/tensorflow-2.8.0-cp38-cp38-linux_aarch64.whl
 COPY --from=tfa-build /addons/artifacts/*.whl /wheels/
 RUN pip install /wheels/tensorflow_addons-*.whl
 RUN python -c "import tensorflow_addons as tfa"

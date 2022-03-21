@@ -42,8 +42,8 @@ docker build -t tensorflow-addons:0.16 -f tensorflow-addons/Dockerfile .
 
 ### Supported versions
 
-Python: v3.9    
-Tensorflow: v2.8
-Tensorflow-addons: v0.16
+Python: 3.9, 3.8
+Tensorflow: 2.8
+Tensorflow-addons: 0.16
 
 NOTE: Other versions can be built and uploaded upon request.
