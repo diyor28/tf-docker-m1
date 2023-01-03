@@ -2,7 +2,7 @@ FROM python:3.9 as tf-build
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential openjdk-11-jdk zip unzip wget
 RUN wget https://github.com/bazelbuild/bazel/releases/download/4.2.1/bazel-4.2.1-dist.zip
-RUN mkdir bazel-4.2.1mkdir bazel-4.2.1
+RUN mkdir bazel-4.2.1
 RUN unzip -d ./bazel-4.2.1 bazel-4.2.1-dist.zip
 WORKDIR /bazel-4.2.1
 RUN env EXTRA_BAZEL_ARGS="--host_javabase=@local_jdk//:jdk" bash ./compile.sh
