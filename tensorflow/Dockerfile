@@ -1,4 +1,4 @@
-FROM python:3.8.11 as tf-build
+FROM python:3.9 as tf-build
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential openjdk-11-jdk zip unzip wget
 RUN wget https://github.com/bazelbuild/bazel/releases/download/4.2.1/bazel-4.2.1-dist.zip
@@ -14,7 +14,7 @@ RUN apt-get -y install git
 
 RUN git clone https://github.com/tensorflow/tensorflow
 WORKDIR /tensorflow
-RUN git checkout r2.8
+RUN git checkout r2.7
 
 ENV PYTHONUNBUFFERED=1
 RUN pip install -U pip six 'numpy<1.19.0' wheel setuptools mock 'future>=0.17.1'
@@ -32,7 +32,7 @@ RUN ./configure
 RUN bazel build --config=opt -c opt //tensorflow/tools/pip_package:build_pip_package
 RUN ./bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
 
-FROM python:3.8.11 as tf-install
+FROM python:3.9 as tf-install
 COPY --from=tf-build /tmp/tensorflow_pkg/*.whl wheels/
 RUN pip install /wheels/tensorflow-*.whl
 RUN python -c "import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
